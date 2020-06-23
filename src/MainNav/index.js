@@ -26,15 +26,12 @@ export default (props) => {
             <div className="nav-cont">
 
             <nav className="grey darken-3 navbar-fixed">
-            <a href="/">
-                <img className="logo-img" src="" alt="turnout logo"/>
-            </a>
+          
             
             <div className="btn-function">
                 {
                     userData.user? 
                         <div className="buttons">
-                        <button className="acct-btns" onClick={createNew}>New Event</button>
                         <button className="acct-btns" onClick={logout}>Logout</button>
                         <button className="acct-btns" onClick={account}>Account</button>
                         </div> :

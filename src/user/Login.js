@@ -19,6 +19,8 @@ export default () => {
 
     try {
         const loginUser = { password, username,};
+        // console.log(loginUser)
+        await Axios.post("http://localhost:8000/users/login", loginUser);
         const loginRes = await Axios.post("http://localhost:8000/users/login", {
         username,
         password,
