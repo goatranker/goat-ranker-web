@@ -16,7 +16,8 @@ export default (props) => {
     const logout = () => {
         setUserData({
             token: undefined,
-            user: undefined
+            user: undefined,
+            spotifyToken: undefined
         })
         localStorage.setItem('auth-token', '')
         history.push("/")

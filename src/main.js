@@ -41,6 +41,7 @@ export default () => {
     const [userData, setUserData] = useState({
         token: undefined,
         user: undefined,
+        spotifyToken: undefined
     })
     
     useEffect(() => {
@@ -59,7 +60,8 @@ export default () => {
                 })
                 setUserData({
                     token,
-                    user: userRespone.data
+                    user: userRespone.data,
+                    spotifyToken: undefined
                 })
             }
         }
