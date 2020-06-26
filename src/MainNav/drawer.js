@@ -19,6 +19,18 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
+import Tabs from './tabs.js'
+import AccountBox from '@material-ui/icons/AccountBox'
+import InputIcon from '@material-ui/icons/Input';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
+// Material
+
+
+import { useContext } from 'react'
+import { Link, useHistory, Redirect } from 'react-router-dom';
+import UserContext from "../context/UserContext.js"
+
 
 
 const drawerWidth = 240;
@@ -119,7 +131,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PersistentDrawerLeft() {
+export default function PersistentDrawerLeft(props) {
+  const { userData, setUserData } = useContext(UserContext);
+  const history = useHistory()
+
+  // Search
+  const [formData, setFormData] = React.useState(props.initial)
+
+
+  const createNew = () => {history.push("/new")}
+  const account = () => {history.push("/users/account")}
+  const signup = () => {history.push("/users/signup")}
+  const login = () => {history.push("/users/login")}
+  const logout = () => {
+      setUserData({
+          token: undefined,
+          user: undefined,
+          spotifyToken: undefined
+      })
+      localStorage.setItem('auth-token', '')
+      history.push("/")
+  }
+
+
+
+
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -174,7 +210,8 @@ export default function PersistentDrawerLeft() {
               />
           </div> 
 
-   
+              {/* <Tabs /> */}
+
               </Toolbar>
 
 
@@ -194,25 +231,45 @@ export default function PersistentDrawerLeft() {
           </IconButton>
         </div>
         <Divider />
-        <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
+        
         <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
 
+        {userData.user? 
+        <List>
+          <ListItem  >
+            <ListItemIcon onClick={account} button key="Account"><AccountBox /></ListItemIcon>
+            <ListItemText onClick={account} primary="Account" />
+          </ListItem>
+          <ListItem  >
+            <ListItemIcon onClick={logout} button key="Logout"> <InputIcon /> </ListItemIcon>
+            <ListItemText onClick={logout} primary="Logout" />
+          </ListItem>
+        </List>
+            :
+          <List>
+            <ListItem  >
+            <ListItemIcon onClick={signup} button key="Signup"><PersonAddIcon /></ListItemIcon>
+            <ListItemText onClick={signup} primary="Signup" />
+          </ListItem>
+          <ListItem >
+            <ListItemIcon onClick={login} button key="Login"> <MeetingRoomIcon /> </ListItemIcon>
+            <ListItemText onClick={login} primary="Login"/>
+          </ListItem>
+          </List>
+
+
+        }
+      </Drawer>
+    
     </div>
   );
 }
+
+
+
+// {['Account', 'My Votes', 'Login', 'Signup'].map((text, index) => (
+//   <ListItem button key={text}>
+//     <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+//     <ListItemText primary={text} />
+//   </ListItem>
+// ))}

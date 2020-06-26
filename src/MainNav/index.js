@@ -7,29 +7,9 @@ import { createMuiTheme } from '@material-ui/core/styles';
 
 
 
-import { useContext } from 'react'
-import { Link, useHistory, Redirect } from 'react-router-dom';
-import UserContext from "../context/UserContext.js"
 export default (props) => {
 
-    const { userData, setUserData } = useContext(UserContext);
-    const history = useHistory()
-
-    const createNew = () => {history.push("/new")}
-    const account = () => {history.push("/users/account")}
-    const signup = () => {history.push("/users/signup")}
-    const login = () => {history.push("/users/login")}
-    const logout = () => {
-        setUserData({
-            token: undefined,
-            user: undefined,
-            spotifyToken: undefined
-        })
-        localStorage.setItem('auth-token', '')
-        history.push("/")
-    }
-
-
+   
 
         return(
 <>  
