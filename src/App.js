@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import "./style.scss";
-
+import Clearfix from './Clearfix/Clearfix.js'
 
 
 const App = (props) => {
@@ -9,7 +9,6 @@ const App = (props) => {
 
   return (
     <>
-      <h1>Welcome to Goat Ranker</h1>
     </>
   );
 }
