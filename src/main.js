@@ -78,7 +78,7 @@ export default () => {
         <>
         <BrowserRouter>
         <UserContext.Provider value={{userData, setUserData}}>
-        <MainNav />
+        <MainNav id="main-nav" />
         <Switch>
             {
                 routes.map((route)=>{

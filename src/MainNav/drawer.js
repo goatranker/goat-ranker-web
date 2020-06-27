@@ -145,6 +145,7 @@ export default function PersistentDrawerLeft(props) {
   const account = () => {history.push("/users/account")}
   const signup = () => {history.push("/users/signup")}
   const login = () => {history.push("/users/login")}
+  const home = () => {history.push("/")}
   const logout = () => {
       setUserData({
           token: undefined,
@@ -177,6 +178,7 @@ export default function PersistentDrawerLeft(props) {
     },
     onSubmit: values => {
       console.log('Form Data', values);
+      home()
       searchResults(values)
     },
   });
