@@ -1,3 +1,154 @@
-#root > div.makeStyles-root-1 > header > div {
-    margin-bottom: 0%;
+.cssload-weird div {
+	background-color: transparent;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	box-shadow: 0px 10px rgb(0,0,0),
+		0px -10px rgb(0,0,0);
+		-o-box-shadow: 0px 10px rgb(0,0,0),
+		0px -10px rgb(0,0,0);
+		-ms-box-shadow: 0px 10px rgb(0,0,0),
+		0px -10px rgb(0,0,0);
+		-webkit-box-shadow: 0px 10px rgb(0,0,0),
+		0px -10px rgb(0,0,0);
+		-moz-box-shadow: 0px 10px rgb(0,0,0),
+		0px -10px rgb(0,0,0);
+	animation: cssload-rotate2 9.2s infinite linear;
+		-o-animation: cssload-rotate2 9.2s infinite linear;
+		-ms-animation: cssload-rotate2 9.2s infinite linear;
+		-webkit-animation: cssload-rotate2 9.2s infinite linear;
+		-moz-animation: cssload-rotate2 9.2s infinite linear;
+}
+.cssload-weird div:nth-child(2) {
+	box-shadow: 0px -19px rgb(0,0,0),
+		0px 19px rgb(0,0,0);
+		-o-box-shadow: 0px -19px rgb(0,0,0),
+		0px 19px rgb(0,0,0);
+		-ms-box-shadow: 0px -19px rgb(0,0,0),
+		0px 19px rgb(0,0,0);
+		-webkit-box-shadow: 0px -19px rgb(0,0,0),
+		0px 19px rgb(0,0,0);
+		-moz-box-shadow: 0px -19px rgb(0,0,0),
+		0px 19px rgb(0,0,0);
+	animation: cssload-rotate 8.63s	infinite linear;
+		-o-animation: cssload-rotate 8.63s	infinite linear;
+		-ms-animation: cssload-rotate 8.63s	infinite linear;
+		-webkit-animation: cssload-rotate 8.63s	infinite linear;
+		-moz-animation: cssload-rotate 8.63s	infinite linear;
+}
+.cssload-weird div:nth-child(3){
+	box-shadow: 0px 29px rgb(0,0,0),
+		0px -29px rgb(0,0,0);
+		-o-box-shadow: 0px 29px rgb(0,0,0),
+		0px -29px rgb(0,0,0);
+		-ms-box-shadow: 0px 29px rgb(0,0,0),
+		0px -29px rgb(0,0,0);
+		-webkit-box-shadow: 0px 29px rgb(0,0,0),
+		0px -29px rgb(0,0,0);
+		-moz-box-shadow: 0px 29px rgb(0,0,0),
+		0px -29px rgb(0,0,0);
+	animation: cssload-rotate2 8.05s	infinite linear;
+		-o-animation: cssload-rotate2 8.05s	infinite linear;
+		-ms-animation: cssload-rotate2 8.05s	infinite linear;
+		-webkit-animation: cssload-rotate2 8.05s	infinite linear;
+		-moz-animation: cssload-rotate2 8.05s	infinite linear;
+}
+.cssload-weird div:nth-child(4){
+	box-shadow: 0px -39px rgb(0,0,0),
+		0px 39px rgb(0,0,0);
+		-o-box-shadow: 0px -39px rgb(0,0,0),
+		0px 39px rgb(0,0,0);
+		-ms-box-shadow: 0px -39px rgb(0,0,0),
+		0px 39px rgb(0,0,0);
+		-webkit-box-shadow: 0px -39px rgb(0,0,0),
+		0px 39px rgb(0,0,0);
+		-moz-box-shadow: 0px -39px rgb(0,0,0),
+		0px 39px rgb(0,0,0);
+	animation: cssload-rotate 7.48s	infinite linear;
+		-o-animation: cssload-rotate 7.48s	infinite linear;
+		-ms-animation: cssload-rotate 7.48s	infinite linear;
+		-webkit-animation: cssload-rotate 7.48s	infinite linear;
+		-moz-animation: cssload-rotate 7.48s	infinite linear;
+}
+.cssload-weird div:nth-child(5){
+	box-shadow: 0px 49px rgb(0,0,0),
+		0px -49px rgb(0,0,0);
+		-o-box-shadow: 0px 49px rgb(0,0,0),
+		0px -49px rgb(0,0,0);
+		-ms-box-shadow: 0px 49px rgb(0,0,0),
+		0px -49px rgb(0,0,0);
+		-webkit-box-shadow: 0px 49px rgb(0,0,0),
+		0px -49px rgb(0,0,0);
+		-moz-box-shadow: 0px 49px rgb(0,0,0),
+		0px -49px rgb(0,0,0);
+	animation: cssload-rotate2 6.9s infinite linear;
+		-o-animation: cssload-rotate2 6.9s infinite linear;
+		-ms-animation: cssload-rotate2 6.9s infinite linear;
+		-webkit-animation: cssload-rotate2 6.9s infinite linear;
+		-moz-animation: cssload-rotate2 6.9s infinite linear;
+}
+
+
+
+@keyframes cssload-rotate {
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@-o-keyframes cssload-rotate {
+	100% {
+		-o-transform: rotate(360deg);
+	}
+}
+
+@-ms-keyframes cssload-rotate {
+	100% {
+		-ms-transform: rotate(360deg);
+	}
+}
+
+@-webkit-keyframes cssload-rotate {
+	100% {
+		-webkit-transform: rotate(360deg);
+	}
+}
+
+@-moz-keyframes cssload-rotate {
+	100% {
+		-moz-transform: rotate(360deg);
+	}
+}
+
+@keyframes cssload-rotate2 {
+	100% {
+		transform: rotate(-360deg);
+	}
+}
+
+@-o-keyframes cssload-rotate2 {
+	100% {
+		-o-transform: rotate(-360deg);
+	}
+}
+
+@-ms-keyframes cssload-rotate2 {
+	100% {
+		-ms-transform: rotate(-360deg);
+	}
+}
+
+@-webkit-keyframes cssload-rotate2 {
+	100% {
+		-webkit-transform: rotate(-360deg);
+	}
+}
+
+@-moz-keyframes cssload-rotate2 {
+	100% {
+		-moz-transform: rotate(-360deg);
+	}
 }
