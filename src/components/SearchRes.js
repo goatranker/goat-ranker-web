@@ -1,4 +1,6 @@
 import React,{ useState, useEffect } from "react";
+import { Link, useHistory, Redirect } from 'react-router-dom';
+
 import Axios from 'axios'
 import { useFormik } from 'formik'
 import ClearFix from '../Clearfix/Clearfix.js'
@@ -25,6 +27,8 @@ const useStyles = makeStyles({
 const SearchRes = (props) => {
     console.log('hey', `http://localhost:8000${props.location.pathname}`);
     const classes = useStyles();
+    const history = useHistory()
+
 
     const [spotifySearch, setSpotifySearch] = useState(null)
     
@@ -34,11 +38,18 @@ const SearchRes = (props) => {
 
 
     const getResults = async () => {
-            const response = await fetch(`http://localhost:8000${props.location.pathname}`)
-            const result = await response.json();
+          const response = await fetch(`http://localhost:8000${props.location.pathname}`)
+          const result = await response.json();
             
-            setSpotifySearch(result)
-            
+          setSpotifySearch(result)
+    }
+
+    const ShowArtist = async (spotify_id) => {
+      history.push({
+        pathname: `/artist/${spotify_id}`,
+        spoitifyId: spotify_id,
+        params: spotify_id
+      })
     }
 
     let displayReady = [];
@@ -56,7 +67,7 @@ const SearchRes = (props) => {
     {spotifySearch? 
     displayReady.map((item, index) => {
         return (
-            <Card className={classes.root}>
+            <Card onClick={() => {ShowArtist(item.id)}} className={classes.root}>
             <CardActionArea>
               <CardMedia
                 component="img"

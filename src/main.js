@@ -5,16 +5,23 @@ import { createBrowserHistory } from 'history';
 
 import Axios from 'axios'
 
+// Components
 import Home from "./App";
 import Account from "./user/Account.js";
 import Signup from "./user/Signup.js";
 import Login from "./user/Login.js"
 import MainNav from './MainNav/index.js'
 import Search from './components/SearchRes.js'
+import ArtistShow from './components/ArtistShow.js'
 
 import UserContext from './context/UserContext.js'
 
 const routes = [
+    {
+        path: "/artist/",
+        component: ArtistShow,
+        name: "ArtistShow"
+    },
     {
         path: "/search",
         component: Search,
