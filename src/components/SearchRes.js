@@ -56,6 +56,8 @@ const SearchRes = (props) => {
 
   return (
     <>
+      <div className="main-cont">
+
       <h3>Results</h3>
       {spotifySearch?     spotifySearch.body.artists.items.map((artist, i) => {
         if (artist.images.length > 1) {
@@ -63,11 +65,11 @@ const SearchRes = (props) => {
           // results.splice(i, 1)
         }
       }) : <></>
-      }
+    }
     {spotifySearch? 
     displayReady.map((item, index) => {
-        return (
-            <Card onClick={() => {ShowArtist(item.id)}} className={classes.root}>
+      return (
+        <Card onClick={() => {ShowArtist(item.id)}} className={classes.root}>
             <CardActionArea>
               <CardMedia
                 component="img"
@@ -75,7 +77,7 @@ const SearchRes = (props) => {
                 height="140"
                 image={item.images[0].url}
                 title={item.name}
-              />
+                />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
                 {item.name}
@@ -98,9 +100,9 @@ const SearchRes = (props) => {
             </CardActions>
           </Card>
         )
-    })
-    :
-    <>
+      })
+      :
+      <>
     <br/>
     <br/>
     <br/>
@@ -116,6 +118,7 @@ const SearchRes = (props) => {
 </div>
 </>
     }
+    </div>
     </>
   );
 }
