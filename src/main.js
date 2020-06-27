@@ -10,10 +10,16 @@ import Account from "./user/Account.js";
 import Signup from "./user/Signup.js";
 import Login from "./user/Login.js"
 import MainNav from './MainNav/index.js'
+import Search from './components/SearchRes.js'
 
 import UserContext from './context/UserContext.js'
 
 const routes = [
+    {
+        path: "/search",
+        component: Search,
+        name: "Search"
+    },
     {
         path: "/users/account",
         component: Account,
@@ -72,7 +78,7 @@ export default () => {
         <>
         <BrowserRouter>
         <UserContext.Provider value={{userData, setUserData}}>
-        <MainNav />
+        <MainNav id="main-nav" />
         <Switch>
             {
                 routes.map((route)=>{
