@@ -35,7 +35,32 @@ import { useContext } from 'react'
 import { Link, useHistory, Redirect } from 'react-router-dom';
 import UserContext from "../context/UserContext.js"
 
-
+// Themes
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+const theme = createMuiTheme({
+  palette: {  
+  primary: {
+      // light: will be calculated from palette.primary.main,
+      main: '#280680',
+      // dark: will be calculated from palette.primary.main,
+      // contrastText: will be calculated to contrast with palette.primary.main
+    },
+    secondary: {
+      light: '#6d6d6d',
+      main: '#424242',
+      // dark: will be calculated from palette.secondary.main,
+      contrastText: '#ffcc00',
+    },
+    // Used by `getContrastText()` to maximize the contrast between
+    // the background and the text.
+    contrastThreshold: 3,
+    // Used by the functions below to shift a color's luminance by approximately
+    // two indexes within its tonal palette.
+    // E.g., shift from Red 500 to Red 300 or Red 700.
+    tonalOffset: 0.2,
+  },
+});
 
 const drawerWidth = 240;
 
@@ -187,6 +212,7 @@ export default function PersistentDrawerLeft(props) {
 
 
   return (
+      <ThemeProvider theme={theme}>
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
@@ -288,6 +314,8 @@ export default function PersistentDrawerLeft(props) {
       </Drawer>
     
     </div>
+    </ThemeProvider>
+      
   );
 }
 

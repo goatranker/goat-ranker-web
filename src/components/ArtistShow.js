@@ -83,7 +83,21 @@ const AristShow = (props) => {
                                 <Button variant="contained" color="secondary">
                                     Listen on Spotify
                                 </Button>
+
+                                    </div>
+                                <div className="songs-cont">
+                                    {artist.tracks.body.tracks.map((item, index) => {
+                                        return (
+                                            <>
+                                                <p>a song</p>
+                                            </>
+                                        )
+                                    })}
                                 </div>
+
+
+
+
                 </Paper> 
                 </div>
             </> 
