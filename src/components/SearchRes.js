@@ -34,7 +34,7 @@ const SearchRes = (props) => {
 
 
     const getResults = async () => {
-            const response = await fetch(`http://localhost:8001${props.location.pathname}`)
+            const response = await fetch(`http://localhost:8000${props.location.pathname}`)
             const result = await response.json();
             
             setSpotifySearch(result)
