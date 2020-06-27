@@ -16,7 +16,7 @@ import UserContext from './context/UserContext.js'
 
 const routes = [
     {
-        path: "/search/",
+        path: "/search",
         component: Search,
         name: "Search"
     },

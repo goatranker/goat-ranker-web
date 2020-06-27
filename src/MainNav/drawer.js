@@ -26,7 +26,11 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 // Material
 
+// Formik
+import { useFormik } from 'formik'
 
+
+// This is all the user stuff
 import { useContext } from 'react'
 import { Link, useHistory, Redirect } from 'react-router-dom';
 import UserContext from "../context/UserContext.js"
@@ -135,11 +139,9 @@ export default function PersistentDrawerLeft(props) {
   const { userData, setUserData } = useContext(UserContext);
   const history = useHistory()
 
-  // Search
-  const [formData, setFormData] = React.useState(props.initial)
 
 
-  const createNew = () => {history.push("/new")}
+  const searchResults = (values) => {history.push(`/search/${values.search}`)}
   const account = () => {history.push("/users/account")}
   const signup = () => {history.push("/users/signup")}
   const login = () => {history.push("/users/login")}
@@ -167,6 +169,20 @@ export default function PersistentDrawerLeft(props) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+
+  const formik = useFormik({
+    initialValues: {
+      search: '',
+    },
+    onSubmit: values => {
+      console.log('Form Data', values);
+      searchResults(values)
+    },
+  });
+
+
+
 
   return (
     <div className={classes.root}>
@@ -200,14 +216,22 @@ export default function PersistentDrawerLeft(props) {
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
+
+            <form onSubmit={formik.handleSubmit}>
             <InputBase
+              name="search"
+              value={formik.values.search}
+              type="text"
+              id="search"
               placeholder="Search…"
+              onChange={formik.handleChange}
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
               />
+              </form>
           </div> 
 
               {/* <Tabs /> */}
