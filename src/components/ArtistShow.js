@@ -44,16 +44,16 @@ const AristShow = (props) => {
     const classes = useStyles();
     const [artist, setArtist] = useState(null)
     
-    useEffect(() => {
-        getArtist()
-    }, [])
-    
     const getArtist = async () => {
         const response = await fetch(`http://localhost:8000${props.location.pathname}`)
         const result = await response.json()
         setArtist(result)
     }
-
+    
+    useEffect(() => {
+        getArtist()
+    }, [])
+    
     return (
             <>
                 <div className="main-cont">
