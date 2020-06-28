@@ -21,7 +21,9 @@ import Grid from '@material-ui/core/Grid';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 
-
+import { useContext } from 'react'
+import { Link, useHistory, Redirect } from 'react-router-dom';
+import UserContext from "../context/UserContext.js"
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -40,6 +42,7 @@ const useStyles = makeStyles(theme => ({
   }));
 
 const AristShow = (props) => {
+    const { userData, setUserData } = useContext(UserContext);
 
     const classes = useStyles();
     const [artist, setArtist] = useState(null)
@@ -48,6 +51,14 @@ const AristShow = (props) => {
         const response = await fetch(`http://localhost:8000${props.location.pathname}`)
         const result = await response.json()
         setArtist(result)
+    }
+
+    const handleVote = async (category, spotifyId, user) => {
+        console.log(category, spotifyId, user);
+        
+    } 
+    const handleNotLoggedin = async () => {
+        console.log("Must be logged in to vote");
     }
     
     useEffect(() => {
@@ -80,10 +91,15 @@ const AristShow = (props) => {
                                 <Typography className={classes.heading}>{item}</Typography>
                                 </ExpansionPanelSummary>
                                 <ExpansionPanelDetails>
-                                <Button variant="contained" color="primary">
+                                {userData.user?
+                                <Button onClick={() => {handleVote(item, artist.artist.body.id, userData)}} variant="contained" color="primary">
                                     Vote for {artist.artist.body.name}
                                 </Button>
-                           
+                                :
+                                <Button onClick={handleNotLoggedin} variant="contained" color="primary">
+                                    Login to vote for {artist.artist.body.name}
+                                </Button>
+                                }
                                 </ExpansionPanelDetails>
                             </ExpansionPanel>
                             </>
