@@ -11,6 +11,16 @@ import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Button from '@material-ui/core/Button';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import Divider from '@material-ui/core/Divider';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Avatar from '@material-ui/core/Avatar';
+import Grid from '@material-ui/core/Grid';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -20,7 +30,7 @@ const useStyles = makeStyles(theme => ({
       "& > *": {
         margin: theme.spacing(.5),
         width: theme.spacing(45),
-        height: theme.spacing(150)
+        height: theme.spacing(200)
       }
     },
     heading: {
@@ -83,21 +93,30 @@ const AristShow = (props) => {
                                 <Button variant="contained" color="secondary">
                                     Listen on Spotify
                                 </Button>
-
                                     </div>
-                                <div className="songs-cont">
+                                    <Grid container spacing={2}>
+                            <Grid item xs={12} md={6}>
+                            <div className={classes.demo}>
+                                <List>
                                     {artist.tracks.body.tracks.map((item, index) => {
                                         return (
                                             <>
-                                                <p>a song</p>
+                                            <ListItem>
+                                            <ListItemIcon>
+                                                <PlayArrowIcon />
+                                            </ListItemIcon>
+                                            <ListItemText
+                                                primary={item.name}
+                                               
+                                            />
+                                            </ListItem>
                                             </>
                                         )
                                     })}
-                                </div>
-
-
-
-
+                                </List>
+                            </div>
+                            </Grid>
+                        </Grid>
                 </Paper> 
                 </div>
             </> 
