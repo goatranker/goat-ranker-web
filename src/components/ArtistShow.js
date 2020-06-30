@@ -47,6 +47,8 @@ const AristShow = (props) => {
     const getArtist = async () => {
         const response = await fetch(`http://localhost:8000${props.location.pathname}`)
         const result = await response.json()
+        console.log(result);
+        
         setArtist(result)
     }
 
@@ -64,6 +66,13 @@ const AristShow = (props) => {
     const handleNotLoggedin = async () => {
         console.log("Must be logged in to vote");
         history.push("/users/login")
+    }
+
+    const handlePlay = async (songUri) => {
+        setUserData({
+            ...userData,
+            currentSong: songUri
+        })
     }
     
     useEffect(() => {
@@ -124,8 +133,8 @@ const AristShow = (props) => {
                                     {artist.tracks.body.tracks.map((item, index) => {
                                         return (
                                             <>
-                                            <ListItem>
-                                            <ListItemIcon>
+                                            <ListItem  onClick={() => {handlePlay(item.uri)}}>
+                                            <ListItemIcon >
                                                 <PlayArrowIcon />
                                             </ListItemIcon>
                                             <ListItemText

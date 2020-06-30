@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme, fade } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -29,7 +29,6 @@ import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 // Formik
 import { useFormik } from 'formik'
 
-
 // This is all the user stuff
 import { useContext } from 'react'
 import { Link, useHistory, Redirect } from 'react-router-dom';
@@ -38,6 +37,18 @@ import UserContext from "../context/UserContext.js"
 // Themes
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
+
+// Spotify Player
+
+import SpotifyPlayer from 'react-spotify-player';
+
+const size = {
+  width: '100%',
+  height: 300,
+};
+const view = 'list'; // or 'coverart'
+const spotifyTheme = 'black'; // or 'white'
+
 const theme = createMuiTheme({
   palette: {  
   primary: {
@@ -164,7 +175,7 @@ export default function PersistentDrawerLeft(props) {
   const { userData, setUserData } = useContext(UserContext);
   const history = useHistory()
 
-
+  const [currentSong, setCurrentSong] = useState(null)
 
   const searchResults = (values) => {history.push(`/search/${values.search}`)}
   const account = () => {history.push("/users/account"); handleDrawerClose()}
@@ -175,7 +186,8 @@ export default function PersistentDrawerLeft(props) {
       setUserData({
           token: undefined,
           user: undefined,
-          spotifyToken: undefined
+          spotifyToken: undefined,
+          currentSong: undefined
       })
       localStorage.setItem('auth-token', '')
       history.push("/");
@@ -209,7 +221,9 @@ export default function PersistentDrawerLeft(props) {
     },
   });
 
-
+  useEffect(() => {
+    setCurrentSong(userData.currentSong)
+  }, [userData])
 
 
   return (
@@ -299,6 +313,15 @@ export default function PersistentDrawerLeft(props) {
             <ListItemText onClick={logout} primary="Logout" />
           </ListItem>
         </List>
+
+        <SpotifyPlayer
+          uri={currentSong}
+          size={size}
+          view={view}
+          theme={spotifyTheme}
+        />
+
+
 
         </>
             :
