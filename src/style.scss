@@ -235,3 +235,20 @@
 	width: 80%;
 	margin: auto;
 }
+
+#logo-animation-nav {
+	max-width: 137.5px;
+	height: auto;
+}
+.lil-space {
+	margin: 0px, 10%;
+}
+#drawer-flex {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	height: 100vh;
+}
+#web-player {
+	justify-self: flex-end;
+}

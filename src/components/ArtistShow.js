@@ -38,6 +38,8 @@ const useStyles = makeStyles(theme => ({
       }
   }));
 
+
+
 const AristShow = (props) => {
     const { userData, setUserData } = useContext(UserContext);
     const history = useHistory()
@@ -73,6 +75,8 @@ const AristShow = (props) => {
             ...userData,
             currentSong: songUri
         })
+
+
     }
     
     useEffect(() => {

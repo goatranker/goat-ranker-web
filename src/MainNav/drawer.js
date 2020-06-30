@@ -223,6 +223,7 @@ export default function PersistentDrawerLeft(props) {
 
   useEffect(() => {
     setCurrentSong(userData.currentSong)
+ 
   }, [userData])
 
 
@@ -293,9 +294,12 @@ export default function PersistentDrawerLeft(props) {
         }}
       >
         <div className={classes.drawerHeader}>
+        <img id="logo-animation-nav" src={require('../artwork/GoatRankerbanner.gif')} alt="goat ranker logo"/>
+        <span className="lil-space"></span>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
+
         </div>
         <Divider />
         
@@ -314,18 +318,11 @@ export default function PersistentDrawerLeft(props) {
           </ListItem>
         </List>
 
-        <SpotifyPlayer
-          uri={currentSong}
-          size={size}
-          view={view}
-          theme={spotifyTheme}
-        />
-
 
 
         </>
             :
-          <List>
+            <List>
             <ListItem  >
             <ListItemIcon onClick={signup} button key="Signup"><PersonAddIcon /></ListItemIcon>
             <ListItemText onClick={signup} primary="Signup" />
@@ -337,7 +334,18 @@ export default function PersistentDrawerLeft(props) {
           </List>
 
 
-        }
+}
+                <div id="drawer-flex">
+
+        <SpotifyPlayer
+          id="web-player"
+          uri={currentSong}
+          size={size}
+          view={view}
+          theme={spotifyTheme}
+          />
+          </div>
+
       </Drawer>
     
     </div>
