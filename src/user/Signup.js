@@ -41,6 +41,9 @@ export default (Signup) => {
 
       return (
             <div>
+    <br />
+    <br />
+
      <h2 className="form-title">Signup</h2>
      <div className="form-cont">
      {error && (

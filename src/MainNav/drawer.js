@@ -167,10 +167,10 @@ export default function PersistentDrawerLeft(props) {
 
 
   const searchResults = (values) => {history.push(`/search/${values.search}`)}
-  const account = () => {history.push("/users/account")}
-  const signup = () => {history.push("/users/signup")}
-  const login = () => {history.push("/users/login")}
-  const home = () => {history.push("/")}
+  const account = () => {history.push("/users/account"); handleDrawerClose()}
+  const signup = () => {history.push("/users/signup"); handleDrawerClose()}
+  const login = () => {history.push("/users/login"); handleDrawerClose()}
+  const home = () => {history.push("/"); handleDrawerClose()}
   const logout = () => {
       setUserData({
           token: undefined,
@@ -178,7 +178,8 @@ export default function PersistentDrawerLeft(props) {
           spotifyToken: undefined
       })
       localStorage.setItem('auth-token', '')
-      history.push("/")
+      history.push("/");
+      handleDrawerClose();
   }
 
 
@@ -287,6 +288,7 @@ export default function PersistentDrawerLeft(props) {
         <Divider />
 
         {userData.user? 
+        <>
         <List>
           <ListItem  >
             <ListItemIcon onClick={account} button key="Account"><AccountBox /></ListItemIcon>
@@ -297,6 +299,8 @@ export default function PersistentDrawerLeft(props) {
             <ListItemText onClick={logout} primary="Logout" />
           </ListItem>
         </List>
+
+        </>
             :
           <List>
             <ListItem  >

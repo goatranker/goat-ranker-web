@@ -13,16 +13,13 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import Divider from '@material-ui/core/Divider';
 import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 
 import { useContext } from 'react'
-import { Link, useHistory, Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import UserContext from "../context/UserContext.js"
 
 const useStyles = makeStyles(theme => ({
@@ -43,7 +40,7 @@ const useStyles = makeStyles(theme => ({
 
 const AristShow = (props) => {
     const { userData, setUserData } = useContext(UserContext);
-
+    const history = useHistory()
     const classes = useStyles();
     const [artist, setArtist] = useState(null)
     
@@ -53,12 +50,20 @@ const AristShow = (props) => {
         setArtist(result)
     }
 
-    const handleVote = async (category, spotifyId, user) => {
-        console.log(category, spotifyId, user);
-        
+    const handleVote = async (category, spotifyId, user, artistName) => {
+        console.log(category, spotifyId, user.user.id);
+        const response = await Axios.post(`http://localhost:8000/categories/${category}`, {
+            user_id: user.user.id,
+            name: category,
+            artistId: spotifyId,
+            artistName: artistName,
+        })
+        console.log(response);
+        history.push(`/categories/${category}`)
     } 
     const handleNotLoggedin = async () => {
         console.log("Must be logged in to vote");
+        history.push("/users/login")
     }
     
     useEffect(() => {
@@ -67,13 +72,15 @@ const AristShow = (props) => {
     
     return (
             <>
+            <br/>
+            <br/>
                 <div className="main-cont">
             {artist? 
             <>
 
                 <div className={classes.root}>
                 <br/><br/><br/>    
-                <Paper elevation={3}>
+                <Paper elevation={4}>
                     <img id="artist-show-img" src={artist.artist.body.images[0].url} alt={`An image of ${artist.artist.body.name}`} />
                     <Typography variant="h2" color="textPrimary">{artist.artist.body.name}</Typography>
                     <Typography variant="h6" color="textPrimary">Popularity Score: {artist.artist.body.popularity}</Typography>
@@ -92,7 +99,7 @@ const AristShow = (props) => {
                                 </ExpansionPanelSummary>
                                 <ExpansionPanelDetails>
                                 {userData.user?
-                                <Button onClick={() => {handleVote(item, artist.artist.body.id, userData)}} variant="contained" color="primary">
+                                <Button onClick={() => {handleVote(item, artist.artist.body.id, userData, artist.artist.body.name)}} variant="contained" color="primary">
                                     Vote for {artist.artist.body.name}
                                 </Button>
                                 :

@@ -1,7 +1,5 @@
 import React, { useState, useEffect} from "react";
-import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Switch} from 'react-router-dom';
-import { createBrowserHistory } from 'history';
 
 
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -16,17 +14,23 @@ import Login from "./user/Login.js"
 import MainNav from './MainNav/index.js'
 import Search from './components/SearchRes.js'
 import ArtistShow from './components/ArtistShow.js'
+import CategoryShow from './components/CategoryShow.js'
 
 import UserContext from './context/UserContext.js'
 
 const routes = [
+    {
+        path: "/categories",
+        component: CategoryShow,
+        name: "CategoryShow"
+    },
     {
         path: "/artist/",
         component: ArtistShow,
         name: "ArtistShow"
     },
     {
-        path: "/search",
+        path: "/search/",
         component: Search,
         name: "Search"
     },

@@ -37,7 +37,8 @@ export default () => {
     };
 
   return <>
-
+    <br />
+    <br />
     <h2 className="form-title">Login</h2>
      <div className="form-cont">
      {error && (
