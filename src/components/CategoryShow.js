@@ -12,6 +12,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import StarIcon from '@material-ui/icons/Star';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -45,13 +46,12 @@ const CategoryShow = (props) => {
             <br/>
             <br/>
             <h1>{category.category.name}</h1>
-
-
-
             <List component="nav" className={classes.root} aria-label="contacts">
             {category.ranked.map((item, index) => {
                 return (
+
                      <ListItem button>
+                        <Typography>Votes: {item.rank}</Typography>
                     <ListItemText inset primary={item.id}/>
                     </ListItem>
                 )
