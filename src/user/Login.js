@@ -1,15 +1,14 @@
-import React, { useState, useContext} from "react";
-import { useHistory } from 'react-router-dom'
-import UserContext from '../context/UserContext.js'
-import Axios from 'axios'
-import Error from './misc/ErrorDisplay.js'
+import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
+import UserContext from "../context/UserContext.js";
+import Axios from "axios";
+import Error from "./misc/ErrorDisplay.js";
 
 export default () => {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
 
   const [error, setError] = useState();
-
 
   const { setUserData } = useContext(UserContext);
   const history = useHistory();
@@ -18,50 +17,58 @@ export default () => {
     event.preventDefault();
 
     try {
-        const loginUser = { password, username,};
-        // console.log(loginUser)
-        await Axios.post("http://localhost:8000/users/login", loginUser);
-        const loginRes = await Axios.post("http://localhost:8000/users/login", {
+      const loginUser = { password, username };
+      // console.log(loginUser)
+      await Axios.post("http://localhost:8000/users/login", loginUser);
+      const loginRes = await Axios.post("http://localhost:8000/users/login", {
         username,
         password,
-        });
-        setUserData({
+      });
+      setUserData({
         token: loginRes.data.token,
         user: loginRes.data.user,
-        });
-        localStorage.setItem("auth-token", loginRes.data.token);
-        history.push("/");
+      });
+      localStorage.setItem("x-auth-token", loginRes.data.token);
+      history.push("/");
     } catch (err) {
-        err.response.data.msg && setError(err.response.data.msg);
+      err.response.data.msg && setError(err.response.data.msg);
     }
-    };
+  };
 
-  return <>
-    <br />
-    <br />
-    <h2 className="form-title">Login</h2>
-     <div className="form-cont">
-     {error && (
-        <Error message={error} clearError={() => setError(undefined)} />
-      )}
-     <form className="form-item" onSubmit={submit}>
-        <label htmlFor="register-username">Username:<br/></label>
-        <input
-          id="login-username"
-          type="text"
-          onChange={(event) => setUsername(event.target.value)}
+  return (
+    <>
+      <br />
+      <br />
+      <h2 className="form-title">Login</h2>
+      <div className="form-cont">
+        {error && (
+          <Error message={error} clearError={() => setError(undefined)} />
+        )}
+        <form className="form-item" onSubmit={submit}>
+          <label htmlFor="register-username">
+            Username:
+            <br />
+          </label>
+          <input
+            id="login-username"
+            type="text"
+            onChange={(event) => setUsername(event.target.value)}
           />
-        <br/>
-        <label htmlFor="login-password">Password:<br/></label>
-        <input
-          id="login-password"
-          type="password"
-          onChange={(event) => setPassword(event.target.value)}
+          <br />
+          <label htmlFor="login-password">
+            Password:
+            <br />
+          </label>
+          <input
+            id="login-password"
+            type="password"
+            onChange={(event) => setPassword(event.target.value)}
           />
-        <br/>
+          <br />
 
-        <input type="submit" value="Login" className="form-btn"/>
-      </form>
-  </div>
-  </>
-}
+          <input type="submit" value="Login" className="form-btn" />
+        </form>
+      </div>
+    </>
+  );
+};
