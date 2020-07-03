@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 import UserContext from "../context/UserContext.js";
 import Axios from "axios";
 import Error from "./misc/ErrorDisplay.js";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
 export default () => {
   const [username, setUsername] = useState();
@@ -40,34 +42,39 @@ export default () => {
       <br />
       <br />
       <h2 className="form-title">Login</h2>
-      <div className="form-cont">
-        {error && (
-          <Error message={error} clearError={() => setError(undefined)} />
-        )}
-        <form className="form-item" onSubmit={submit}>
-          <label htmlFor="register-username">
-            Username:
+      <div className="any-cont">
+        <div className="main-cont">
+          {error && (
+            <Error message={error} clearError={() => setError(undefined)} />
+          )}
+          <form className="form-item" onSubmit={submit}>
+            <TextField
+              onChange={(event) => setUsername(event.target.value)}
+              id="outlined-basic"
+              label="Username"
+              variant="outlined"
+            />
             <br />
-          </label>
-          <input
-            id="login-username"
-            type="text"
-            onChange={(event) => setUsername(event.target.value)}
-          />
-          <br />
-          <label htmlFor="login-password">
-            Password:
             <br />
-          </label>
-          <input
-            id="login-password"
-            type="password"
-            onChange={(event) => setPassword(event.target.value)}
-          />
-          <br />
-
-          <input type="submit" value="Login" className="form-btn" />
-        </form>
+            <TextField
+              onChange={(event) => setPassword(event.target.value)}
+              id="outlined-basic"
+              label="Password"
+              type="password"
+              variant="outlined"
+            />
+            <br />
+            <br />
+            <Button
+              type="submit"
+              value="Login"
+              variant="outlined"
+              color="primary"
+            >
+              Login!
+            </Button>
+          </form>
+        </div>
       </div>
     </>
   );

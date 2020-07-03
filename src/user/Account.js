@@ -47,8 +47,8 @@ const Account = (props) => {
           <br />
           <br />
           <h1 onClick={cheese}>Hello, {userData.user.username}!</h1>
-          <h1>{userPull.firstName}</h1>
-          <h1>{userPull.lastName}</h1>
+          <h1>{userPull.data.firstName}</h1>
+          <h1>{userPull.data.lastName}</h1>
         </>
       ) : (
         <>

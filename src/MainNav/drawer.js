@@ -42,7 +42,7 @@ import { ThemeProvider } from "@material-ui/styles";
 
 import SpotifyPlayer from "react-spotify-player";
 
-//
+// Media Query
 
 const size = {
   width: "100%",
