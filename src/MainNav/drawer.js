@@ -61,24 +61,11 @@ const spotifyTheme = "black"; // or 'white'
 const theme = createMuiTheme({
   palette: {
     primary: {
-      // light: will be calculated from palette.primary.main,
-      main: "#280680",
-      // dark: will be calculated from palette.primary.main,
-      // contrastText: will be calculated to contrast with palette.primary.main
+      main: "#5d34af",
     },
     secondary: {
-      light: "#6d6d6d",
-      main: "#424242",
-      // dark: will be calculated from palette.secondary.main,
-      contrastText: "#ffcc00",
+      main: "#1b1b1b",
     },
-    // Used by `getContrastText()` to maximize the contrast between
-    // the background and the text.
-    contrastThreshold: 3,
-    // Used by the functions below to shift a color's luminance by approximately
-    // two indexes within its tonal palette.
-    // E.g., shift from Red 500 to Red 300 or Red 700.
-    tonalOffset: 0.2,
   },
 });
 
@@ -252,83 +239,85 @@ export default function PersistentDrawerLeft(props) {
     <ThemeProvider theme={theme}>
       <div className={classes.root}>
         <CssBaseline />
-        <AppBar
-          position="fixed"
-          className={clsx(classes.appBar, {
-            [classes.appBarShift]: open,
-          })}
-        >
-          <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawerOpen}
-              edge="start"
-              className={clsx(classes.menuButton, open && classes.hide)}
-            >
-              <MenuIcon />
-            </IconButton>
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
+        <ThemeProvider theme={theme}>
+          <AppBar
+            position="fixed"
+            className={clsx(classes.appBar, {
+              [classes.appBarShift]: open,
+            })}
+          >
+            <Toolbar>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                onClick={handleDrawerOpen}
+                edge="start"
+                className={clsx(classes.menuButton, open && classes.hide)}
+              >
+                <MenuIcon />
+              </IconButton>
+              <div className={classes.search}>
+                <div className={classes.searchIcon}>
+                  <SearchIcon />
+                </div>
+
+                <form onSubmit={formik.handleSubmit}>
+                  <InputBase
+                    name="search"
+                    value={formik.values.search}
+                    type="text"
+                    id="search"
+                    placeholder="Search…"
+                    onChange={formik.handleChange}
+                    classes={{
+                      root: classes.inputRoot,
+                      input: classes.inputInput,
+                    }}
+                    inputProps={{ "aria-label": "search" }}
+                  />
+                </form>
               </div>
+              <span className="drawer-break"></span>
 
-              <form onSubmit={formik.handleSubmit}>
-                <InputBase
-                  name="search"
-                  value={formik.values.search}
-                  type="text"
-                  id="search"
-                  placeholder="Search…"
-                  onChange={formik.handleChange}
-                  classes={{
-                    root: classes.inputRoot,
-                    input: classes.inputInput,
-                  }}
-                  inputProps={{ "aria-label": "search" }}
-                />
-              </form>
-            </div>
-            <span className="drawer-break"></span>
-
-            {matches ? (
-              <>
-                <List className="drawer-cont">
-                  <ListItem>
-                    <ListItemIcon onClick={allCats} button key="Categories">
-                      <LibraryBooksIcon />
-                    </ListItemIcon>
-                    <ListItemText
-                      onClick={allCats}
-                      className="drawer-list-cont"
-                      primary="Categories"
-                    />
-                  </ListItem>
-                  <ListItem className="drawer-list-cont">
-                    <ListItemIcon button key="My Votes">
-                      <HowToVoteIcon />
-                    </ListItemIcon>
-                    <ListItemText
-                      className="drawer-list-cont"
-                      primary="My Votes"
-                    />
-                  </ListItem>
-                  <ListItem className="drawer-list-cont">
-                    <ListItemIcon button key="Trending">
-                      <WhatshotIcon />
-                    </ListItemIcon>
-                    <ListItemText
-                      className="drawer-list-cont"
-                      primary="Trending"
-                    />
-                  </ListItem>
-                </List>
-              </>
-            ) : (
-              <></>
-            )}
-          </Toolbar>
-        </AppBar>
+              {matches ? (
+                <>
+                  <List className="drawer-cont">
+                    <ListItem>
+                      <ListItemIcon onClick={allCats} button key="Categories">
+                        <LibraryBooksIcon />
+                      </ListItemIcon>
+                      <ListItemText
+                        onClick={allCats}
+                        className="drawer-list-cont"
+                        primary="Categories"
+                      />
+                    </ListItem>
+                    <ListItem className="drawer-list-cont">
+                      <ListItemIcon button key="My Votes">
+                        <HowToVoteIcon />
+                      </ListItemIcon>
+                      <ListItemText
+                        className="drawer-list-cont"
+                        primary="My Votes"
+                      />
+                    </ListItem>
+                    <ListItem className="drawer-list-cont">
+                      <ListItemIcon button key="Trending">
+                        <WhatshotIcon />
+                      </ListItemIcon>
+                      <ListItemText
+                        className="drawer-list-cont"
+                        primary="Trending"
+                      />
+                    </ListItem>
+                  </List>
+                </>
+              ) : (
+                <></>
+              )}
+            </Toolbar>
+          </AppBar>
+        </ThemeProvider>
         <Drawer
           className={classes.drawer}
           variant="persistent"
