@@ -1,0 +1,27 @@
+.drawer-main-cont {
+  display: flex;
+}
+.drawer-cont {
+  display: flex;
+  justify-content: flex-end;
+  justify-self: flex-end;
+  width: 50%;
+}
+.drawer-list-cont {
+  width: 75px;
+}
+.drawer-break {
+  width: 30%;
+}
+.small-breaker {
+  height: 5%;
+}
+.searchRes-mobile {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 120%;
+}
+.pad-it {
+  padding-bottom: 1%;
+}

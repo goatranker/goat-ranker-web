@@ -20,6 +20,9 @@ import Button from "@material-ui/core/Button";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 
+// media query
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+
 // material
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,7 +56,8 @@ const SearchRes = (props) => {
   console.log("hey", `http://localhost:8000${props.location.pathname}`);
   const classes = useStyles();
   const theme = useTheme();
-
+  const matches = useMediaQuery("(min-width:740px)");
+  const resMedia = matches ? "searchRes-mobile" : "";
   const history = useHistory();
 
   const [spotifySearch, setSpotifySearch] = useState(null);
@@ -97,33 +101,37 @@ const SearchRes = (props) => {
         )}
         {spotifySearch ? (
           <>
-            {displayReady.map((item, index) => {
-              return (
-                <>
-                  <Card
-                    key={index}
-                    className={classes.root}
-                    onClick={() => {
-                      ShowArtist(item.id);
-                    }}
-                  >
-                    <div className={classes.details}></div>
-                    <CardMedia
-                      className={classes.cover}
-                      image={item.images[0].url}
-                      title="Live from space album cover"
-                    >
-                      <CardContent className={classes.content}>
-                        <Button variant="contained" color="primary">
-                          {item.name}
-                        </Button>
-                      </CardContent>
-                    </CardMedia>
-                  </Card>
-                  <br />
-                </>
-              );
-            })}
+            <div className={resMedia}>
+              {displayReady.map((item, index) => {
+                return (
+                  <>
+                    <div className="pad-it">
+                      <Card
+                        key={index}
+                        className={classes.root}
+                        onClick={() => {
+                          ShowArtist(item.id);
+                        }}
+                      >
+                        <div className={classes.details}></div>
+                        <CardMedia
+                          className={classes.cover}
+                          image={item.images[0].url}
+                          title="Live from space album cover"
+                        >
+                          <CardContent className={classes.content}>
+                            <Button variant="contained" color="primary">
+                              {item.name}
+                            </Button>
+                          </CardContent>
+                        </CardMedia>
+                      </Card>
+                    </div>
+                    <br />
+                  </>
+                );
+              })}
+            </div>
           </>
         ) : (
           <>

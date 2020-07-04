@@ -24,6 +24,9 @@ import AccountBox from "@material-ui/icons/AccountBox";
 import InputIcon from "@material-ui/icons/Input";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import MeetingRoomIcon from "@material-ui/icons/MeetingRoom";
+import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
+import HowToVoteIcon from "@material-ui/icons/HowToVote";
+import WhatshotIcon from "@material-ui/icons/Whatshot";
 // Material
 
 // Formik
@@ -43,6 +46,10 @@ import { ThemeProvider } from "@material-ui/styles";
 import SpotifyPlayer from "react-spotify-player";
 
 // Media Query
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+
+// My styles
+import "./style.scss";
 
 const size = {
   width: "100%",
@@ -176,7 +183,7 @@ const useStyles = makeStyles((theme) => ({
 export default function PersistentDrawerLeft(props) {
   const { userData, setUserData } = useContext(UserContext);
   const history = useHistory();
-
+  const matches = useMediaQuery("(min-width:750px)");
   const [currentSong, setCurrentSong] = useState(null);
 
   const searchResults = (values) => {
@@ -257,7 +264,6 @@ export default function PersistentDrawerLeft(props) {
             >
               <MenuIcon />
             </IconButton>
-
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
@@ -279,8 +285,43 @@ export default function PersistentDrawerLeft(props) {
                 />
               </form>
             </div>
+            <span className="drawer-break"></span>
 
-            {/* <Tabs /> */}
+            {matches ? (
+              <>
+                <List className="drawer-cont">
+                  <ListItem>
+                    <ListItemIcon button key="Categories">
+                      <LibraryBooksIcon />
+                    </ListItemIcon>
+                    <ListItemText
+                      className="drawer-list-cont"
+                      primary="Categories"
+                    />
+                  </ListItem>
+                  <ListItem className="drawer-list-cont">
+                    <ListItemIcon button key="My Votes">
+                      <HowToVoteIcon />
+                    </ListItemIcon>
+                    <ListItemText
+                      className="drawer-list-cont"
+                      primary="My Votes"
+                    />
+                  </ListItem>
+                  <ListItem className="drawer-list-cont">
+                    <ListItemIcon button key="Trending">
+                      <WhatshotIcon />
+                    </ListItemIcon>
+                    <ListItemText
+                      className="drawer-list-cont"
+                      primary="Trending"
+                    />
+                  </ListItem>
+                </List>
+              </>
+            ) : (
+              <></>
+            )}
           </Toolbar>
         </AppBar>
         <Drawer
@@ -312,45 +353,68 @@ export default function PersistentDrawerLeft(props) {
 
           <Divider />
 
-          {userData.user ? (
+          {matches ? (
+            <></>
+          ) : (
             <>
               <List>
                 <ListItem>
-                  <ListItemText primary={userData.user.username} />
+                  <ListItemIcon button key="Categories">
+                    <LibraryBooksIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Categories" />
                 </ListItem>
                 <ListItem>
-                  <ListItemIcon onClick={account} button key="Account">
-                    <AccountBox />
+                  <ListItemIcon button key="My Votes">
+                    <HowToVoteIcon />
                   </ListItemIcon>
-                  <ListItemText onClick={account} primary="Account" />
+                  <ListItemText primary="My Votes" />
                 </ListItem>
                 <ListItem>
-                  <ListItemIcon onClick={logout} button key="Logout">
-                    {" "}
-                    <InputIcon />{" "}
+                  <ListItemIcon button key="Trending">
+                    <WhatshotIcon />
                   </ListItemIcon>
-                  <ListItemText onClick={logout} primary="Logout" />
+                  <ListItemText primary="Trending" />
                 </ListItem>
               </List>
             </>
-          ) : (
-            <List>
-              <ListItem>
-                <ListItemIcon onClick={signup} button key="Signup">
-                  <PersonAddIcon />
-                </ListItemIcon>
-                <ListItemText onClick={signup} primary="Signup" />
-              </ListItem>
-              <ListItem>
-                <ListItemIcon onClick={login} button key="Login">
-                  {" "}
-                  <MeetingRoomIcon />{" "}
-                </ListItemIcon>
-                <ListItemText onClick={login} primary="Login" />
-              </ListItem>
-            </List>
           )}
+
           <div id="drawer-flex">
+            {userData.user ? (
+              <>
+                <List>
+                  <ListItem>
+                    <ListItemIcon onClick={account} button key="Account">
+                      <AccountBox />
+                    </ListItemIcon>
+                    <ListItemText onClick={account} primary="Account" />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemIcon onClick={logout} button key="Logout">
+                      <InputIcon />
+                    </ListItemIcon>
+                    <ListItemText onClick={logout} primary="Logout" />
+                  </ListItem>
+                </List>
+              </>
+            ) : (
+              <List>
+                <ListItem>
+                  <ListItemIcon onClick={signup} button key="Signup">
+                    <PersonAddIcon />
+                  </ListItemIcon>
+                  <ListItemText onClick={signup} primary="Signup" />
+                </ListItem>
+                <ListItem>
+                  <ListItemIcon onClick={login} button key="Login">
+                    {" "}
+                    <MeetingRoomIcon />{" "}
+                  </ListItemIcon>
+                  <ListItemText onClick={login} primary="Login" />
+                </ListItem>
+              </List>
+            )}
             <SpotifyPlayer
               id="web-player"
               uri={currentSong}

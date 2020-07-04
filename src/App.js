@@ -7,7 +7,7 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 const App = (props) => {
   const { userData, setUserData } = useContext(UserContext);
   const history = useHistory();
-  const matches = useMediaQuery("(min-width:600px)");
+  const matches = useMediaQuery("(min-width:760px)");
   return (
     <>
       <br />
@@ -20,7 +20,7 @@ const App = (props) => {
             alt="Concert"
           /> */}
         </div>
-        <span>{`(min-width:600px) matches: ${matches}`}</span>
+        <span>{`(min-width:760px) matches: ${matches}`}</span>
       </div>
     </>
   );

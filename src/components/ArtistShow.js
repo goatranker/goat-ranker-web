@@ -22,6 +22,8 @@ import { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "../context/UserContext.js";
 
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -36,6 +38,11 @@ const useStyles = makeStyles((theme) => ({
     fontSize: theme.typography.pxToRem(15),
     fontWeight: theme.typography.fontWeightRegular,
   },
+  paper: {
+    margin: "auto",
+    width: "90%",
+    height: "auto",
+  },
 }));
 
 const AristShow = (props) => {
@@ -43,6 +50,8 @@ const AristShow = (props) => {
   const history = useHistory();
   const classes = useStyles();
   const [artist, setArtist] = useState(null);
+  const matches = useMediaQuery("(min-width:740px)");
+  const matchesLarge = useMediaQuery("(min-width:1200px)");
 
   const getArtist = async () => {
     const response = await fetch(
@@ -88,107 +97,236 @@ const AristShow = (props) => {
     <>
       <br />
       <br />
-      <div className="main-cont">
-        {artist ? (
-          <>
-            <div className={classes.root}>
+      {artist ? (
+        <>
+          {matches ? (
+            <>
               <br />
               <br />
-              <br />
-              <Paper elevation={4}>
-                <img
-                  id="artist-show-img"
-                  src={artist.artist.body.images[0].url}
-                  alt={`${artist.artist.body.name}`}
-                />
-                <Typography variant="h2" color="textPrimary">
-                  {artist.artist.body.name}
-                </Typography>
-                <Typography variant="h6" color="textPrimary">
-                  Popularity Score: {artist.artist.body.popularity}
-                </Typography>
-                <Typography variant="h6" color="textPrimary">
-                  Spotify Followers:{" "}
-                  {commas(artist.artist.body.followers.total)}
-                </Typography>
-
-                {artist.artist.body.genres.map((item, index) => {
-                  return (
-                    <>
-                      <ExpansionPanel>
-                        <ExpansionPanelSummary
-                          expandIcon={<ExpandMoreIcon />}
-                          aria-controls="panel1a-content"
-                          id="panel1a-header"
-                        >
-                          <Typography className={classes.heading}>
-                            {item}
-                          </Typography>
-                        </ExpansionPanelSummary>
-                        <ExpansionPanelDetails>
-                          {userData.user ? (
-                            <Button
-                              onClick={() => {
-                                handleVote(
-                                  item,
-                                  artist.artist.body.id,
-                                  userData,
-                                  artist.artist.body.name
-                                );
-                              }}
-                              variant="contained"
-                              color="primary"
+              <Paper className={classes.paper} elevation={4}>
+                <div className="artist-show-cont">
+                  <img
+                    className="artist-show-img-large"
+                    src={artist.artist.body.images[0].url}
+                    alt={`${artist.artist.body.name}`}
+                  />
+                  <div className="artist-info-cont">
+                    <Typography variant="h2" color="textPrimary">
+                      {artist.artist.body.name}
+                    </Typography>
+                    <Typography variant="h6" color="textPrimary">
+                      Popularity Score: {artist.artist.body.popularity}
+                    </Typography>
+                    <Typography variant="h6" color="textPrimary">
+                      Spotify Followers:{" "}
+                      {commas(artist.artist.body.followers.total)}
+                    </Typography>
+                    {artist.artist.body.genres.map((item, index) => {
+                      return (
+                        <>
+                          <ExpansionPanel>
+                            <ExpansionPanelSummary
+                              expandIcon={<ExpandMoreIcon />}
+                              aria-controls="panel1a-content"
+                              id="panel1a-header"
                             >
-                              Vote for {artist.artist.body.name}
-                            </Button>
-                          ) : (
-                            <Button
-                              onClick={handleNotLoggedin}
-                              variant="contained"
-                              color="primary"
-                            >
-                              Login to vote for {artist.artist.body.name}
-                            </Button>
-                          )}
-                        </ExpansionPanelDetails>
-                      </ExpansionPanel>
-                    </>
-                  );
-                })}
-                <div className="any-cont">
-                  <Button variant="contained" color="secondary">
-                    Listen on Spotify
-                  </Button>
-                </div>
-                <Grid container spacing={2}>
-                  <Grid item xs={12} md={6}>
-                    <div className={classes.demo}>
-                      <List>
-                        {artist.tracks.body.tracks.map((item, index) => {
-                          return (
-                            <>
-                              <ListItem
+                              <Typography className={classes.heading}>
+                                {item}
+                              </Typography>
+                            </ExpansionPanelSummary>
+                            <ExpansionPanelDetails>
+                              {userData.user ? (
+                                <Button
+                                  onClick={() => {
+                                    handleVote(
+                                      item,
+                                      artist.artist.body.id,
+                                      userData,
+                                      artist.artist.body.name
+                                    );
+                                  }}
+                                  variant="contained"
+                                  color="primary"
+                                >
+                                  Vote for {artist.artist.body.name}
+                                </Button>
+                              ) : (
+                                <Button
+                                  onClick={handleNotLoggedin}
+                                  variant="contained"
+                                  color="primary"
+                                >
+                                  Login to vote for {artist.artist.body.name}
+                                </Button>
+                              )}
+                            </ExpansionPanelDetails>
+                          </ExpansionPanel>
+                        </>
+                      );
+                    })}
+                  </div>
+                  {matchesLarge ? (
+                    <div className="artist-songs-cont">
+                      {artist.tracks.body.tracks.map((item, index) => {
+                        return (
+                          <>
+                            <ListItem>
+                              <ListItemIcon>
+                                <PlayArrowIcon />
+                              </ListItemIcon>
+                              <Button
+                                className="artist-show-btn"
                                 onClick={() => {
                                   handlePlay(item.uri);
                                 }}
+                                variant="outlined"
+                                color="primary"
                               >
-                                <ListItemIcon>
-                                  <PlayArrowIcon />
-                                </ListItemIcon>
-                                <ListItemText primary={item.name} />
-                              </ListItem>
-                            </>
-                          );
-                        })}
-                      </List>
+                                {item.name}
+                              </Button>
+                            </ListItem>
+                          </>
+                        );
+                      })}
                     </div>
-                  </Grid>
-                </Grid>
+                  ) : (
+                    <></>
+                  )}
+                </div>
+                {matchesLarge ? (
+                  <></>
+                ) : (
+                  <div className="artist-songs-cont">
+                    {artist.tracks.body.tracks.map((item, index) => {
+                      return (
+                        <>
+                          <ListItem>
+                            <ListItemIcon>
+                              <PlayArrowIcon />
+                            </ListItemIcon>
+                            <Button
+                              className="artist-show-btn"
+                              onClick={() => {
+                                handlePlay(item.uri);
+                              }}
+                              variant="outlined"
+                              color="primary"
+                            >
+                              {item.name}
+                            </Button>
+                          </ListItem>
+                        </>
+                      );
+                    })}
+                  </div>
+                )}
               </Paper>
-            </div>
-          </>
-        ) : (
-          <>
+            </>
+          ) : (
+            <>
+              <div className="main-cont">
+                <div className={classes.root}>
+                  <br />
+                  <br />
+                  <br />
+                  <Paper elevation={4}>
+                    <img
+                      id="artist-show-img"
+                      src={artist.artist.body.images[0].url}
+                      alt={`${artist.artist.body.name}`}
+                    />
+                    <Typography variant="h2" color="textPrimary">
+                      {artist.artist.body.name}
+                    </Typography>
+                    <Typography variant="h6" color="textPrimary">
+                      Popularity Score: {artist.artist.body.popularity}
+                    </Typography>
+                    <Typography variant="h6" color="textPrimary">
+                      Spotify Followers:{" "}
+                      {commas(artist.artist.body.followers.total)}
+                    </Typography>
+
+                    {artist.artist.body.genres.map((item, index) => {
+                      return (
+                        <>
+                          <ExpansionPanel>
+                            <ExpansionPanelSummary
+                              expandIcon={<ExpandMoreIcon />}
+                              aria-controls="panel1a-content"
+                              id="panel1a-header"
+                            >
+                              <Typography className={classes.heading}>
+                                {item}
+                              </Typography>
+                            </ExpansionPanelSummary>
+                            <ExpansionPanelDetails>
+                              {userData.user ? (
+                                <Button
+                                  onClick={() => {
+                                    handleVote(
+                                      item,
+                                      artist.artist.body.id,
+                                      userData,
+                                      artist.artist.body.name
+                                    );
+                                  }}
+                                  variant="contained"
+                                  color="primary"
+                                >
+                                  Vote for {artist.artist.body.name}
+                                </Button>
+                              ) : (
+                                <Button
+                                  onClick={handleNotLoggedin}
+                                  variant="contained"
+                                  color="primary"
+                                >
+                                  Login to vote for {artist.artist.body.name}
+                                </Button>
+                              )}
+                            </ExpansionPanelDetails>
+                          </ExpansionPanel>
+                        </>
+                      );
+                    })}
+                    <div className="any-cont">
+                      <Button variant="contained" color="secondary">
+                        Listen on Spotify
+                      </Button>
+                    </div>
+                    <Grid container spacing={2}>
+                      <Grid item xs={12} md={6}>
+                        <div className={classes.demo}>
+                          <List>
+                            {artist.tracks.body.tracks.map((item, index) => {
+                              return (
+                                <>
+                                  <ListItem
+                                    onClick={() => {
+                                      handlePlay(item.uri);
+                                    }}
+                                  >
+                                    <ListItemIcon>
+                                      <PlayArrowIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary={item.name} />
+                                  </ListItem>
+                                </>
+                              );
+                            })}
+                          </List>
+                        </div>
+                      </Grid>
+                    </Grid>
+                  </Paper>
+                </div>
+              </div>
+            </>
+          )}
+        </>
+      ) : (
+        <>
+          <div className="main-cont">
             <br />
             <br />
             <br />
@@ -202,9 +340,9 @@ const AristShow = (props) => {
               <div></div>
               <div></div>
             </div>
-          </>
-        )}
-      </div>
+          </div>
+        </>
+      )}
     </>
   );
 };
