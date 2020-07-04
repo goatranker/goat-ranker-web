@@ -234,7 +234,31 @@
   width: 80%;
   margin: auto;
 }
-
+.all-cat-cont {
+  width: 80%;
+  margin: auto;
+}
+.cat-papers {
+  display: flex;
+  flex-direction: column;
+  text-transform: capitalize;
+  align-items: center;
+  justify-content: space-around;
+  margin: 5%;
+  height: 75%;
+  text-align: center;
+}
+.cat-title {
+  text-align: center;
+  margin: 5%;
+}
+.please {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
 #logo-animation-nav {
   max-width: 137.5px;
   height: auto;

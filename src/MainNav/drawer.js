@@ -205,6 +205,10 @@ export default function PersistentDrawerLeft(props) {
     history.push("/");
     handleDrawerClose();
   };
+  const allCats = () => {
+    history.push("/categories/all");
+    handleDrawerClose();
+  };
   const logout = () => {
     setUserData({
       token: undefined,
@@ -291,10 +295,11 @@ export default function PersistentDrawerLeft(props) {
               <>
                 <List className="drawer-cont">
                   <ListItem>
-                    <ListItemIcon button key="Categories">
+                    <ListItemIcon onClick={allCats} button key="Categories">
                       <LibraryBooksIcon />
                     </ListItemIcon>
                     <ListItemText
+                      onClick={allCats}
                       className="drawer-list-cont"
                       primary="Categories"
                     />
@@ -359,10 +364,10 @@ export default function PersistentDrawerLeft(props) {
             <>
               <List>
                 <ListItem>
-                  <ListItemIcon button key="Categories">
+                  <ListItemIcon onClick={allCats} button key="Categories">
                     <LibraryBooksIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Categories" />
+                  <ListItemText onClick={allCats} primary="Categories" />
                 </ListItem>
                 <ListItem>
                   <ListItemIcon button key="My Votes">

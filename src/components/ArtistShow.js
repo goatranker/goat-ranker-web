@@ -171,7 +171,11 @@ const AristShow = (props) => {
                         return (
                           <>
                             <ListItem>
-                              <ListItemIcon>
+                              <ListItemIcon
+                                onClick={() => {
+                                  handlePlay(item.uri);
+                                }}
+                              >
                                 <PlayArrowIcon />
                               </ListItemIcon>
                               <Button
