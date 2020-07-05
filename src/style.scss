@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet');
+* {
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+}
 .cssload-weird div {
   background-color: transparent;
   width: 10px;
@@ -225,7 +231,7 @@
   align-items: center;
   justify-content: center;
   width: 80%;
-  margin: auto;
+  margin: 3% auto;
 }
 .any-cont {
   display: flex;
@@ -234,7 +240,31 @@
   width: 80%;
   margin: auto;
 }
-
+.all-cat-cont {
+  width: 80%;
+  margin: auto;
+}
+.cat-papers {
+  display: flex;
+  flex-direction: column;
+  text-transform: capitalize;
+  align-items: center;
+  justify-content: space-around;
+  margin: 5%;
+  height: 75%;
+  text-align: center;
+}
+.cat-title {
+  text-align: center;
+  margin: 5%;
+}
+.please {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
 #logo-animation-nav {
   max-width: 137.5px;
   height: auto;
@@ -250,4 +280,66 @@
 }
 #web-player {
   justify-self: flex-end;
+}
+.landing-spotify {
+  width: 15%;
+  height: auto;
+  margin: 5%;
+}
+.home-info {
+  font-family: "Lato", sans-serif;
+  font-size: 3rem;
+  color: rgba(27, 27, 27, 0.986);
+}
+.home-info-link {
+  font-family: "Lato", sans-serif;
+  font-size: 3rem;
+  text-decoration: none;
+  color: rgba(27, 27, 27, 0.986);
+}
+.home-info-me {
+  font-family: "Lato", sans-serif;
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: rgba(27, 27, 27, 0.986);
+}
+.home-info-link:hover {
+  text-decoration: underline;
+  color: #5d34af;
+}
+
+.spotify-cont {
+  margin: 3%;
+  text-align: center;
+}
+
+.about {
+  font-size: 2rem;
+  margin: auto;
+  width: 80%;
+  display: flex;
+  border-radius: 2rem;
+}
+
+.about-1 {
+  margin-right: 5%;
+}
+
+.about-2 {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-left: 5%;
+  margin-top: 10%;
+}
+.spotify-logo {
+  width: 8rem;
+  height: auto;
+}
+.info-title {
+  font-family: "Lato", sans-serif;
+  font-size: 3rem;
 }

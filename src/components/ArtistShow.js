@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import commas from "../algorithms/commas.js";
 import Axios from "axios";
-
 // material
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
@@ -171,7 +170,11 @@ const AristShow = (props) => {
                         return (
                           <>
                             <ListItem>
-                              <ListItemIcon>
+                              <ListItemIcon
+                                onClick={() => {
+                                  handlePlay(item.uri);
+                                }}
+                              >
                                 <PlayArrowIcon />
                               </ListItemIcon>
                               <Button
