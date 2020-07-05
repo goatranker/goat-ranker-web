@@ -76,7 +76,7 @@ export default () => {
         token = "";
       }
       const tokenResponse = await Axios.post(
-        "http://localhost:8000/users/tokenisvalid",
+        "https://nova-goat-ranker.herokuapp.com/users/tokenisvalid",
         null,
         {
           headers: { "x-auth-token": token },
@@ -84,7 +84,7 @@ export default () => {
       );
       if (tokenResponse.data) {
         const userRespone = await Axios.get(
-          "http://localhost:8000/users/tokenisvalid/users",
+          "https://nova-goat-ranker.herokuapp.com/users/tokenisvalid/users",
           {
             headers: { "x-auth-token": token },
           }

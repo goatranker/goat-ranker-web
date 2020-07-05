@@ -1,20 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory, Redirect } from "react-router-dom";
 
-import Axios from "axios";
-import { useFormik } from "formik";
-import ClearFix from "../Clearfix/Clearfix.js";
 import commas from "../algorithms/commas.js";
 
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import SkipPreviousIcon from "@material-ui/icons/SkipPrevious";
-import PlayArrowIcon from "@material-ui/icons/PlayArrow";
-import SkipNextIcon from "@material-ui/icons/SkipNext";
 import Button from "@material-ui/core/Button";
 
 import GridList from "@material-ui/core/GridList";
@@ -53,7 +47,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SearchRes = (props) => {
-  console.log("hey", `http://localhost:8000${props.location.pathname}`);
+  console.log(
+    "hey",
+    `https://nova-goat-ranker.herokuapp.com${props.location.pathname}`
+  );
   const classes = useStyles();
   const theme = useTheme();
   const matches = useMediaQuery("(min-width:740px)");
@@ -69,7 +66,7 @@ const SearchRes = (props) => {
 
   const getResults = async () => {
     const response = await fetch(
-      `http://localhost:8000${props.location.pathname}`
+      `https://nova-goat-ranker.herokuapp.com${props.location.pathname}`
     );
     const result = await response.json();
 

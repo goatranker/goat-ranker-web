@@ -208,6 +208,11 @@
   max-width: 500px;
   margin: 1.5%;
 }
+.artist-show-img {
+  max-height: auto;
+  max-width: 350px;
+  margin: 1.5%;
+}
 .artist-show-cont {
   display: flex;
   justify-items: first baseline;
@@ -257,6 +262,7 @@
 .cat-title {
   text-align: center;
   margin: 5%;
+  text-transform: capitalize;
 }
 .please {
   display: flex;
@@ -342,4 +348,14 @@
 .info-title {
   font-family: "Lato", sans-serif;
   font-size: 3rem;
+}
+.cat-hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  height: 14rem;
+}
+.cat-show-cont {
+  width: 100%;
 }

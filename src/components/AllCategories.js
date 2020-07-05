@@ -30,7 +30,9 @@ const AllCategories = (props) => {
   const classes = useStyles();
 
   const getAllCategories = async () => {
-    const response = await fetch("http://localhost:8000/categories/all");
+    const response = await fetch(
+      "https://nova-goat-ranker.herokuapp.com/categories/all"
+    );
     const result = await response.json();
     setAllCategories(result);
   };
