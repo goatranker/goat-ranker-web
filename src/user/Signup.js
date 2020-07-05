@@ -32,11 +32,17 @@ export default (Signup) => {
         lastName,
       };
       // console.log(newUser)
-      await Axios.post("http://localhost:8000/users/signup", newUser);
-      const loginRes = await Axios.post("http://localhost:8000/users/login", {
-        username,
-        password,
-      });
+      await Axios.post(
+        "https://nova-goat-ranker.herokuapp.com/users/signup",
+        newUser
+      );
+      const loginRes = await Axios.post(
+        "https://nova-goat-ranker.herokuapp.com/users/login",
+        {
+          username,
+          password,
+        }
+      );
       setUserData({
         token: loginRes.data.token,
         user: loginRes.data.user,

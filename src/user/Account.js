@@ -20,7 +20,7 @@ const Account = (props) => {
     };
     try {
       const response = await Axios.get(
-        "http://localhost:8000/users/account/",
+        "https://nova-goat-ranker.herokuapp.com/users/account/",
         options
       );
       console.log("response", response.data);

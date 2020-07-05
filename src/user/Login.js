@@ -5,6 +5,7 @@ import Axios from "axios";
 import Error from "./misc/ErrorDisplay.js";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
 
 export default () => {
   const [username, setUsername] = useState();
@@ -21,11 +22,17 @@ export default () => {
     try {
       const loginUser = { password, username };
       // console.log(loginUser)
-      await Axios.post("http://localhost:8000/users/login", loginUser);
-      const loginRes = await Axios.post("http://localhost:8000/users/login", {
-        username,
-        password,
-      });
+      await Axios.post(
+        "https://nova-goat-ranker.herokuapp.com/users/login",
+        loginUser
+      );
+      const loginRes = await Axios.post(
+        "hhttps://nova-goat-ranker.herokuapp.com/users/login",
+        {
+          username,
+          password,
+        }
+      );
       setUserData({
         token: loginRes.data.token,
         user: loginRes.data.user,
@@ -41,7 +48,9 @@ export default () => {
     <>
       <br />
       <br />
-      <h2 className="form-title">Login</h2>
+      <Typography className="cat-title" variant="h3">
+        Login
+      </Typography>
       <div className="any-cont">
         <div className="main-cont">
           {error && (

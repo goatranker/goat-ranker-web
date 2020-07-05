@@ -54,7 +54,7 @@ const AristShow = (props) => {
 
   const getArtist = async () => {
     const response = await fetch(
-      `http://localhost:8000${props.location.pathname}`
+      `https://nova-goat-ranker.herokuapp.com${props.location.pathname}`
     );
     const result = await response.json();
     console.log(result);
@@ -65,7 +65,7 @@ const AristShow = (props) => {
   const handleVote = async (category, spotifyId, user, artistName) => {
     console.log(category, spotifyId, user.user.id);
     const response = await Axios.post(
-      `http://localhost:8000/categories/${category}`,
+      `https://nova-goat-ranker.herokuapp.com/categories/${category}`,
       {
         user_id: user.user.id,
         name: category,

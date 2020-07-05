@@ -331,7 +331,7 @@ export default function PersistentDrawerLeft(props) {
             <img
               onClick={home}
               id="logo-animation-nav"
-              src={require("../artwork/GoatRankerbanner.gif")}
+              src={require("../artwork/goat_ranker_banner.gif")}
               alt="goat ranker logo"
             />
             <span className="lil-space"></span>
