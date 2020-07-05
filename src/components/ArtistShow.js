@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import commas from "../algorithms/commas.js";
 import Axios from "axios";
-import $ from "jquery";
 // material
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";

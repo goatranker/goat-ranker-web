@@ -57,6 +57,7 @@ const SearchRes = (props) => {
   const classes = useStyles();
   const theme = useTheme();
   const matches = useMediaQuery("(min-width:740px)");
+  const matchesBig = useMediaQuery("(min-width:110px)");
   const resMedia = matches ? "searchRes-mobile" : "";
   const history = useHistory();
 
@@ -88,7 +89,14 @@ const SearchRes = (props) => {
   return (
     <>
       <div className="main-cont">
-        <h3>Results</h3>
+        {matchesBig ? (
+          <>
+            <br />
+            <br />
+          </>
+        ) : (
+          <></>
+        )}
         {spotifySearch ? (
           spotifySearch.body.artists.items.map((artist, i) => {
             if (artist.images.length > 1) {
