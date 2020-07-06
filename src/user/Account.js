@@ -32,7 +32,6 @@ const Account = (props) => {
   useEffect(() => {
     console.log(userData);
 
-    getUser(userData);
     userData.user ? getUser(userData) : history.push("users/login");
   }, []);
 
