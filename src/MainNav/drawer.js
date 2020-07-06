@@ -196,6 +196,10 @@ export default function PersistentDrawerLeft(props) {
     history.push("/categories/all");
     handleDrawerClose();
   };
+  const userVotes = () => {
+    history.push("/users/myvotes");
+    handleDrawerClose();
+  };
   const logout = () => {
     setUserData({
       token: undefined,
@@ -292,16 +296,17 @@ export default function PersistentDrawerLeft(props) {
                         primary="Categories"
                       />
                     </ListItem>
-                    <ListItem className="drawer-list-cont">
+                    <ListItem onClick={userVotes} className="drawer-list-cont">
                       <ListItemIcon button key="My Votes">
                         <HowToVoteIcon />
                       </ListItemIcon>
                       <ListItemText
+                        onClick={userVotes}
                         className="drawer-list-cont"
                         primary="My Votes"
                       />
                     </ListItem>
-                    <ListItem className="drawer-list-cont">
+                    {/* <ListItem className="drawer-list-cont">
                       <ListItemIcon button key="Trending">
                         <WhatshotIcon />
                       </ListItemIcon>
@@ -309,7 +314,7 @@ export default function PersistentDrawerLeft(props) {
                         className="drawer-list-cont"
                         primary="Trending"
                       />
-                    </ListItem>
+                    </ListItem> */}
                   </List>
                 </>
               ) : (
@@ -359,17 +364,17 @@ export default function PersistentDrawerLeft(props) {
                   <ListItemText onClick={allCats} primary="Categories" />
                 </ListItem>
                 <ListItem>
-                  <ListItemIcon button key="My Votes">
+                  <ListItemIcon onClick={userVotes} button key="My Votes">
                     <HowToVoteIcon />
                   </ListItemIcon>
-                  <ListItemText primary="My Votes" />
+                  <ListItemText onClick={userVotes} primary="My Votes" />
                 </ListItem>
-                <ListItem>
+                {/* <ListItem>
                   <ListItemIcon button key="Trending">
                     <WhatshotIcon />
                   </ListItemIcon>
                   <ListItemText primary="Trending" />
-                </ListItem>
+                </ListItem> */}
               </List>
             </>
           )}
@@ -402,8 +407,7 @@ export default function PersistentDrawerLeft(props) {
                 </ListItem>
                 <ListItem>
                   <ListItemIcon onClick={login} button key="Login">
-                    {" "}
-                    <MeetingRoomIcon />{" "}
+                    <MeetingRoomIcon />
                   </ListItemIcon>
                   <ListItemText onClick={login} primary="Login" />
                 </ListItem>

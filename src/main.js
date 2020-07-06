@@ -15,7 +15,7 @@ import Search from "./components/SearchRes.js";
 import ArtistShow from "./components/ArtistShow.js";
 import CategoryShow from "./components/CategoryShow.js";
 import AllCategories from "./components/AllCategories.js";
-
+import MyVotes from "./user/MyVotes.js";
 import UserContext from "./context/UserContext.js";
 
 const routes = [
@@ -38,6 +38,11 @@ const routes = [
     path: "/search/",
     component: Search,
     name: "Search",
+  },
+  {
+    path: "/users/myvotes",
+    component: MyVotes,
+    name: "MyVotes",
   },
   {
     path: "/users/account",
