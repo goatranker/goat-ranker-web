@@ -296,7 +296,7 @@ export default function PersistentDrawerLeft(props) {
                         primary="Categories"
                       />
                     </ListItem>
-                    <ListItem onClick={userVotes} className="drawer-list-cont">
+                    {/* <ListItem onClick={userVotes} className="drawer-list-cont">
                       <ListItemIcon button key="My Votes">
                         <HowToVoteIcon />
                       </ListItemIcon>
@@ -305,7 +305,7 @@ export default function PersistentDrawerLeft(props) {
                         className="drawer-list-cont"
                         primary="My Votes"
                       />
-                    </ListItem>
+                    </ListItem> */}
                     {/* <ListItem className="drawer-list-cont">
                       <ListItemIcon button key="Trending">
                         <WhatshotIcon />
@@ -363,12 +363,12 @@ export default function PersistentDrawerLeft(props) {
                   </ListItemIcon>
                   <ListItemText onClick={allCats} primary="Categories" />
                 </ListItem>
-                <ListItem>
+                {/* <ListItem>
                   <ListItemIcon onClick={userVotes} button key="My Votes">
                     <HowToVoteIcon />
                   </ListItemIcon>
                   <ListItemText onClick={userVotes} primary="My Votes" />
-                </ListItem>
+                </ListItem> */}
                 {/* <ListItem>
                   <ListItemIcon button key="Trending">
                     <WhatshotIcon />
