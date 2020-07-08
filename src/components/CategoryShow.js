@@ -18,6 +18,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import LooksOneIcon from "@material-ui/icons/LooksOne";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,7 +47,10 @@ const CategoryShow = (props) => {
   const [goat, setGoat] = useState(null);
   const history = useHistory();
   const classes = useStyles();
+  const matches = useMediaQuery("(min-width:740px)");
 
+  let changes = matches ? "main-cont" : "cat-rank-sm";
+  let changes2 = matches ? "cat-rank-cont" : "";
   console.log("catname", catName);
   console.log("category 2", category);
   console.log("goat", goat);
@@ -118,24 +122,28 @@ const CategoryShow = (props) => {
           <h1>Loading Goat</h1>
         </>
       )}
-      <div className="main-cont">
-        <List component="nav" className={classes.root} aria-label="contacts">
-          {category.ranked.map((item, index) => {
-            return (
-              <ListItem
-                className=""
-                onClick={() => {
-                  history.push(`/artist/${item.artistId}`);
-                }}
-                button
-              >
-                <ListItemText inset primary={`Rank: ${index + 1}`} />
-                <ListItemText inset primary={item.id} />
-                <Typography>Votes: {item.rank}</Typography>
-              </ListItem>
-            );
-          })}
-        </List>
+      <div className={changes}>
+        <div className={changes2}>
+          <List className={classes.root} aria-label="contacts">
+            {category.ranked.map((item, index) => {
+              return (
+                <ListItem
+                  onClick={() => {
+                    history.push(`/artist/${item.artistId}`);
+                  }}
+                  button
+                >
+                  <ListItemText inset primary={`Rank: ${index + 1}`} />
+                  <span />
+                  <ListItemText inset primary={item.id} />
+                  <span />
+                  <Typography>Votes: {item.rank}</Typography>
+                  <span />
+                </ListItem>
+              );
+            })}
+          </List>
+        </div>
       </div>
     </>
   ) : (
