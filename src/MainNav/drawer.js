@@ -229,7 +229,6 @@ export default function PersistentDrawerLeft(props) {
       search: "",
     },
     onSubmit: (values) => {
-      console.log("Form Data", values);
       home();
       searchResults(values);
     },

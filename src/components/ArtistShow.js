@@ -57,13 +57,11 @@ const AristShow = (props) => {
       `https://nova-goat-ranker.herokuapp.com${props.location.pathname}`
     );
     const result = await response.json();
-    console.log(result);
 
     setArtist(result);
   };
 
   const handleVote = async (category, spotifyId, user, artistName) => {
-    console.log(category, spotifyId, user.user.id);
     const response = await Axios.post(
       `https://nova-goat-ranker.herokuapp.com/categories/${category}`,
       {
@@ -73,11 +71,9 @@ const AristShow = (props) => {
         artistName: artistName,
       }
     );
-    console.log(response);
     history.push(`/categories/${category}`);
   };
   const handleNotLoggedin = async () => {
-    console.log("Must be logged in to vote");
     history.push("/users/login");
   };
 

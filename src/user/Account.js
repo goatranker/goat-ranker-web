@@ -23,21 +23,14 @@ const Account = (props) => {
         "https://nova-goat-ranker.herokuapp.com/users/account/",
         options
       );
-      console.log("response", response.data);
       setUserPull(response);
     } catch (error) {
       console.log(error);
     }
   };
   useEffect(() => {
-    console.log(userData);
-
     userData.user ? getUser(userData) : history.push("users/login");
   }, []);
-
-  const cheese = () => {
-    console.log(userPull);
-  };
 
   return (
     <div className="account-container">
@@ -45,7 +38,7 @@ const Account = (props) => {
         <>
           <br />
           <br />
-          <h1 onClick={cheese}>Hello, {userData.user.username}!</h1>
+          <h1>Hello, {userData.user.username}!</h1>
           <h1>{userPull.data.firstName}</h1>
           <h1>{userPull.data.lastName}</h1>
         </>

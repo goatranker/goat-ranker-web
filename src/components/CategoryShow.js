@@ -51,9 +51,6 @@ const CategoryShow = (props) => {
 
   let changes = matches ? "main-cont" : "cat-rank-sm";
   let changes2 = matches ? "cat-rank-cont" : "";
-  console.log("catname", catName);
-  console.log("category 2", category);
-  console.log("goat", goat);
 
   const ShowArtist = async (spotify_id) => {
     history.push({
