@@ -47,10 +47,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SearchRes = (props) => {
-  console.log(
-    "hey",
-    `https://nova-goat-ranker.herokuapp.com${props.location.pathname}`
-  );
   const classes = useStyles();
   const theme = useTheme();
   const matches = useMediaQuery("(min-width:740px)");
