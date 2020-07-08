@@ -16,30 +16,28 @@ const App = (props) => {
       <br />
       <div className="background">
         <div className="main-cont">
-          <div className="about">
-            <div className="about-1">
-              <h2>How it works</h2>
-              <a href="https://www.dictionary.com/e/slang/g-o-a-t/">
-                What is a GOAT anyway?
-              </a>
-              <p>
-                <br /> Here you can search for your favorite artist just like
-                you would on Spotify! <br />
-                <br />
-                Once you find your favorite artist. Take a look at the
-                categories and see if you think they are worthy of a greatest of
-                all time vote in that genre.
-                <br />
-              </p>
-            </div>
-            <div className="about-2">
-              <p>
-                Most votes in a category will make that artist the GOAT of that
-                genre! <br /> <br /> Goats are displayed in their respective
-                category pages!
-              </p>
-            </div>
+          <div className="about-1">
+            <h2>How it works</h2>
+            <a href="https://www.dictionary.com/e/slang/g-o-a-t/">
+              What is a GOAT anyway?
+            </a>
+            <p>
+              <br /> Here you can search for your favorite artist just like you
+              would on Spotify! <br />
+              <br />
+              Once you find your favorite artist. Take a look at the categories
+              and see if you think they are worthy of a greatest of all time
+              vote in that genre.
+            </p>
           </div>
+          <div className="about-2">
+            <p>
+              Most votes in a category will make that artist the GOAT of that
+              genre! <br /> <br /> Goats are displayed in their respective
+              category pages!
+            </p>
+          </div>
+
           <div className="spotify-cont">
             <h4 className="info-title">POWERED BY</h4>
             <img
