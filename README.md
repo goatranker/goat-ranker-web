@@ -8,6 +8,10 @@ This is my Final Project from General Assembly. A Full stack application goatran
 
 To listen to music search any artist just like you would on spotify and click on any song. In the drawer there is a music player that works on desktop and mobile. Music does not auto play.
 
+#### API REPO
+
+https://github.com/whoisdominic/goatranker-api
+
 #### Technologies Used
 
 - React
